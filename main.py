@@ -4,7 +4,6 @@ import urllib
 import json
 import asyncio
 from datetime import date
-import youtube_dl
 from discord_tokens import secret
 bot = commands.Bot(command_prefix='?')
 
@@ -42,6 +41,10 @@ async def join(ctx):
     channel = ctx.message.author.voice.channel
     await channel.connect()
 
+@bot.command(pass_context=True)
+async def leave(ctx):
+    server = ctx.message.guild.voice_client
+    await server.disconnect(force=True)
 
 @bot.command()
 async def plan(ctx):
@@ -55,6 +58,5 @@ async def plan(ctx):
     g.set_footer(text="Timetable for this week")
 
     await ctx.send(embed=g)
-
 
 bot.run(secret)

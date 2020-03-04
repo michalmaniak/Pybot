@@ -2,3 +2,5 @@
 discord_tokens.py
 
 __pycache__/
+*.xml
+*.iml
